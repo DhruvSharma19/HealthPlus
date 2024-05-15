@@ -1,0 +1,125 @@
+/* CSS Styles */
+@import url("https://fonts.googleapis.com/css2?family=Comme:wght@500&family=Open+Sans:wght@500&family=Roboto:wght@400&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color-1: #76c893;
+  --primary-color-2: #52b69a;
+  --secondary-color-1: #34a0a4;
+  --secondary-color-2: #168aa6;
+  --secondary-color-3: #093e1a;
+  --accent-color-1: #c5f9c9;
+  --background-color-1: #f5f5f5;
+  --background-color-2: #152b2c;
+  --font-family-1: "Roboto", sans-serif;
+  --font-family-heading: "Comme", sans-serif;
+  --font-family-2: "Open Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-smooth: auto;
+  overflow-x: hidden;
+}
+nav {
+  width: 40%;
+}
+
+nav a,
+nav button {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  font-family: var(--font-family-2);
+  font-weight: lighter;
+}
+
+nav a:hover,
+nav button:hover {
+  background-color: var(--primary-color-2);
+  color: var(--background-color-1);
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-heading {
+  font-family: var(--font-family-heading);
+}
+
+/* hero section */
+
+.hero-text {
+  font-family: var(--font-family-heading);
+}
+
+.hero-stanza {
+  font-family: var(--font-family-1);
+}
+
+.img-wrapper {
+  min-width: 300px;
+}
+
+.img-wrapper-predictor {
+  background-color: var(--accent-color-1);
+}
+
+.dpWindow {
+  min-height: 165vh;
+}
+.symptoms {
+  min-height: 60vh;
+}
+.added-symptoms {
+  overflow: scroll;
+}
+
+.bttns-container:nth-child(n) {
+  min-width: 425px;
+}
+
+/* footer */
+footer {
+  min-height: 25vh;
+}
+
+.heading {
+  max-width: 1200px;
+}
+
+.grid-container {
+  max-width: 100%;
+}
+
+/* Create a 7-column grid */
+.gridd {
+  display: grid;
+  grid-template-columns: repeat(
+    7,
+    1fr
+  ); /* Adjust the gap between columns if desired */
+}
+
+.dropdown-option {
+  font-size: 12px;
+  color: gray;
+}
+
+.sidebar {
+  height: 90vh;
+}
+.current-medications {
+  background-color: #ffffff;
+  color: #4a5568;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+}
+
+.responseCall {
+  background-color: rgba(153, 236, 182, 0.289);
+}
