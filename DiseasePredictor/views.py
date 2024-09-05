@@ -13,35 +13,13 @@ import csv
 from django.db import transaction
 import os
 
-
-def insert_patient_data(request):
-    data = os.path.join(os.path.dirname(
-        os.path.realpath(__file__)), 'Training.csv')
-    with open(data, 'r') as file:
-        reader = csv.reader(file)
-        next(reader)  # Skip the header row
-
-        with transaction.atomic():
-            for row in reader:
-                # Map the values from the CSV row to the model fields
-                # Exclude the last column
-                symptom_values = [int(value) for value in row[:-1]]
-                prognosis = row[-1]
-
-                # Create a new instance of the model
-                field_names = [field.name for field in symptoms_diseases._meta.get_fields(
-                ) if field.name != 'id' and field.name != 'prognosis']
-                field_values = dict(zip(field_names, symptom_values))
-                instance = symptoms_diseases.objects.create(
-                    prognosis=prognosis, **field_values)
-
-                # Save the instance to the database
-                instance.save()
-
-            return render(request, 'index.html')
-
+svm_model = None
 
 def scale_dataset(dataframe, oversample=False):
+    if dataframe.empty:
+        print("Warning: DataFrame is empty.")
+        return None, None, None
+    
     X = dataframe[dataframe.columns[:-1]].values
     y = dataframe[dataframe.columns[-1]].values
 
@@ -56,54 +34,47 @@ def scale_dataset(dataframe, oversample=False):
 
     return data, X, y
 
-svm_model = None
 
-data = pd.DataFrame.from_records(
-        symptoms_diseases.objects.all().values()).drop('id', axis=1)
-
-train, X, Y = scale_dataset(data, oversample=True)
-
-svm_model = SVC(probability=True)
-svm_model = svm_model.fit(X, Y)
-    
-
-def train(request):
+def train_svm_model():
     global svm_model
-    data = pd.DataFrame.from_records(
-        symptoms_diseases.objects.all().values()).drop('id', axis=1)
+    data = pd.DataFrame.from_records(symptoms_diseases.objects.all().values())
+    if 'id' in data.columns:
+        data.drop('id', axis=1, inplace=True)
 
     train, X, Y = scale_dataset(data, oversample=True)
 
     svm_model = SVC(probability=True)
-    svm_model = svm_model.fit(X, Y)
-    return render(request, 'index.html')
+    svm_model.fit(X, Y)
 
+train_svm_model()  # Initialize SVM model during server startup
 
 @api_view()
 def predict(request, symptoms=''):
-    x = np.asarray(list(symptoms), dtype=np.int_)
-    x = x[1:]
-    x = x.reshape(-1, 1)
+    if not svm_model:
+        train_svm_model()  # Re-train model if not initialized
+
+    x = np.fromstring(symptoms, dtype=int, sep=',')
+    x = x[1:].reshape(1, -1)  # Exclude first element (assuming it's a label)
 
     scaler = StandardScaler()
-    x = scaler.fit_transform(x)
+    x_scaled = scaler.fit_transform(x)
 
-    x_ = x.reshape(1, -1)
-    Y_ = svm_model.predict(x_)
+    Y_ = svm_model.predict(x_scaled)
 
-    probas = svm_model.predict_proba(x_)
+    probas = svm_model.predict_proba(x_scaled)
 
     top5_indices = np.argsort(probas, axis=1)[:, -5:]
     top5_values = np.take_along_axis(probas, top5_indices, axis=1)
 
-    # Get the corresponding class labels
     top5_labels = svm_model.classes_[top5_indices]
 
-    # Print the top 5 class labels for the first sample in the test data
-    pd = top5_labels[0][::-1].tolist()
+    # Format results
+    pd = top5_labels[0][::-1].tolist()  # Reverse to get highest probability first
     pd_prob = top5_values[0][::-1].astype(float).tolist()
+
     Predicted_Diseases.objects.all().delete()
     Predicted_Diseases(diseases=pd, diseases_prob=pd_prob).save()
+    
     data = Predicted_Diseases.objects.all()
     serializer = PredictionSerializer(data, many=True)
-    return Response(serializer.data, template_name=None)
+    return Response(serializer.data)
