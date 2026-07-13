@@ -1,55 +1,55 @@
-# 🏥 HealthPlus
+# HealthPlus
 
 This project is a Django-based web application designed to manage user accounts, patient profiles, doctor profiles, and track disease symptoms. It features a robust backend for handling user authentication, data serialization, and custom validations. The frontend is built with modern JavaScript frameworks and libraries to create a responsive and user-friendly interface.
 
-🧑‍💻 **Test User:** testUser@gmail.com  
-🔐 **Password:** 12345678
+**Test User:** testUser@gmail.com  
+**Password:** 12345678
 
-🌐 **Website Link:**  [HealthPlus]()
+**Website Link:**  [HealthPlus]()
 
-## 🎥 Demo Video
+## Demo Video
 
-## 🛠️ System Diagrams
+## System Diagrams
 
 ![diagram (1)](https://github.com/DhruvSharma19/HealthPlus/assets/112254552/68a96c11-ff06-4e9c-ae14-42831c3ec09d)
 ![diagram](https://github.com/DhruvSharma19/HealthPlus/assets/112254552/0cdb1b03-890e-4e75-b005-25cb582f0da4)
 ![Screenshot_4-6-2024_164214_diagrams helpful dev](https://github.com/DhruvSharma19/HealthPlus/assets/112254552/fb00f949-b98e-47dc-aeac-9f887ff0cb8f)
 
-## 🌟 Key Features
+## Key Features
 
-- **User Management**: Register, login, logout, and view user details. 🧑‍💼🔐👥
-- **Patient Profiles**: Create, retrieve, and update patient information. 🏥👩‍⚕️📋
-- **Doctor Profiles**: List doctor profiles with details. 👨‍⚕️📝👩‍⚕️
-- **Symptom Tracking**: Store and manage symptoms and related diseases. 🤒📊🦠
-- **Custom Validations**: Ensure data integrity with custom validation functions. ✅🔍🔒
+- **User Management**: Register, login, logout, and view user details. 
+- **Patient Profiles**: Create, retrieve, and update patient information. 
+- **Doctor Profiles**: List doctor profiles with details. 
+- **Symptom Tracking**: Store and manage symptoms and related diseases. 
+- **Custom Validations**: Ensure data integrity with custom validation functions. 
 
-## 🛠 Technologies Used
+## Technologies Used
 
 ### Backend
-- **Django**: Web framework for building the backend. 🌐🐍
-- **Django REST Framework**: For creating RESTful APIs. 🔄📡
-- **PostgreSQL**: Database for storing application data. 🗄️🐘
-- **NumPy & Pandas**: Data manipulation and analysis. 📊🐼
-- **Scikit-Learn & Imbalanced-Learn**: Machine learning libraries for disease prediction. 🤖📈
-- **Python Decouple & Dotenv**: For environment variable management. 🔧🌱
-- **Django CORS Headers**: For handling CORS. 🌍🔒
+- **Django**: Web framework for building the backend. 
+- **Django REST Framework**: For creating RESTful APIs.
+- **PostgreSQL**: Database for storing application data. 
+- **NumPy & Pandas**: Data manipulation and analysis. 
+- **Scikit-Learn & Imbalanced-Learn**: Machine learning libraries for disease prediction. 
+- **Python Decouple & Dotenv**: For environment variable management. 
+- **Django CORS Headers**: For handling CORS. 
 
 ### Frontend
-- **React**: JavaScript library for building user interfaces. ⚛️💻
-- **Vite**: Frontend tooling for fast development and building. ⚡🛠️
-- **MUI**: Material-UI components for React. 🧩🎨
-- **React Router DOM**: Routing library for React. 🧭🚦
-- **Axios**: Promise-based HTTP client. 📡🔗
-- **Chart.js & React-Chartjs-2**: For data visualization. 📉📊
-- **Bootstrap & React-Bootstrap**: For responsive design. 💼📐
-- **UUID**: For generating unique identifiers. 🔑🆔
-- **TailwindCSS**: Utility-first CSS framework. 🎨🧵
+- **React**: JavaScript library for building user interfaces. 
+- **Vite**: Frontend tooling for fast development and building. 
+- **MUI**: Material-UI components for React. 
+- **React Router DOM**: Routing library for React. 
+- **Axios**: Promise-based HTTP client. 
+- **Chart.js & React-Chartjs-2**: For data visualization. 
+- **Bootstrap & React-Bootstrap**: For responsive design. 
+- **UUID**: For generating unique identifiers. 
+- **TailwindCSS**: Utility-first CSS framework. 
 
-## 🖼️ Screenshots
+## Screenshots
 
 Sure, here is an improved version of the setup instructions:
 
-## Getting Started 🚀
+## Getting Started 
 
 ### Project Setup Instructions
 
@@ -106,7 +106,7 @@ Sure, here is an improved version of the setup instructions:
    npm install
    ```
 
-## 🤝 Contributions
+## Contributions
 
 We welcome contributions to FlowLink! To contribute:
 
@@ -143,7 +143,7 @@ We welcome contributions to FlowLink! To contribute:
 
 We appreciate your contributions and will review your pull request as soon as possible!
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 A big thank you to everyone who contributed to this project! We appreciate your support and feedback.
 
